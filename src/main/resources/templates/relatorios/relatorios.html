@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatórios</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f6f8;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .card h2 {
+            margin: 0 0 15px 0;
+            color: #555;
+            font-size: 18px;
+        }
+
+        .numero {
+            font-size: 36px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .botoes {
+            margin-top: 30px;
+        }
+
+        .botao {
+            display: inline-block;
+            padding: 10px 18px;
+            margin-right: 10px;
+            text-decoration: none;
+            color: white;
+            background-color: #6c757d;
+            border-radius: 5px;
+        }
+
+        .botao:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Relatórios do Sistema</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>Total de Expedientes</h2>
+            <div class="numero" th:text="${totalExpedientes}">0</div>
+        </div>
+
+        <div class="card">
+            <h2>Em Andamento</h2>
+            <div class="numero" th:text="${emAndamento}">0</div>
+        </div>
+
+        <div class="card">
+            <h2>Encaminhados</h2>
+            <div class="numero" th:text="${encaminhados}">0</div>
+        </div>
+
+        <div class="card">
+            <h2>Concluídos</h2>
+            <div class="numero" th:text="${concluidos}">0</div>
+        </div>
+
+        <div class="card">
+            <h2>Arquivados</h2>
+            <div class="numero" th:text="${arquivados}">0</div>
+        </div>
+
+        <div class="card">
+            <h2>Total de Movimentações</h2>
+            <div class="numero" th:text="${totalMovimentacoes}">0</div>
+        </div>
+
+    </div>
+
+    <div class="botoes">
+
+        <a href="/expedientes" class="botao">
+            Gestão de Expedientes
+        </a>
+
+        <a href="/" class="botao">
+            Voltar ao Menu
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

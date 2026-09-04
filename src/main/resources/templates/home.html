@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Gestão de Expedientes</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1000px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .bem-vindo {
+            text-align: center;
+            margin-bottom: 35px;
+            color: #666;
+        }
+
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .menu a {
+            display: block;
+            padding: 18px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #343a40;
+            color: white;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .menu a:hover {
+            opacity: 0.85;
+        }
+
+        .logout {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .logout a {
+            text-decoration: none;
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Sistema de Gestão de Expedientes</h1>
+
+    <p class="bem-vindo">
+        Bem-vindo ao Sistema de Gestão de Expedientes.
+    </p>
+
+    <div class="menu">
+
+        <a href="/usuarios">
+            Gestão de Utilizadores
+        </a>
+
+        <a href="/papeis">
+            Gestão de Papéis e Permissões
+        </a>
+
+        <a href="/expedientes">
+            Gestão de Expedientes
+        </a>
+
+        <a href="/movimentacoes/expediente/2">
+            Movimentação de Expedientes
+        </a>
+
+        <a href="/relatorios">
+            Relatórios
+        </a>
+
+        <a href="/auditoria">
+            Auditoria
+        </a>
+
+    </div>
+
+    <div class="logout">
+        <a href="/logout">Sair do Sistema</a>
+    </div>
+
+</div>
+
+</body>
+</html>

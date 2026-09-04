@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão de Papéis e Permissões</title>
+</head>
+<body>
+
+<h1>Gestão de Papéis e Permissões</h1>
+
+<p>Lista de papéis disponíveis no sistema:</p>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Papel</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr th:each="papel, contador : ${papeis}">
+            <td th:text="${contador.count}"></td>
+            <td th:text="${papel}"></td>
+        </tr>
+    </tbody>
+</table>
+
+<br>
+
+<a href="/">Voltar ao Menu</a>
+
+</body>
+</html>

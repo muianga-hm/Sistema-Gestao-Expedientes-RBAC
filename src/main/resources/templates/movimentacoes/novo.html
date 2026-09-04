@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Movimentação</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .botoes {
+            margin-top: 25px;
+        }
+
+        button, .voltar {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #198754;
+            color: white;
+        }
+
+        .voltar {
+            background-color: #6c757d;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Nova Movimentação</h1>
+
+    <p>
+        <strong>Expediente:</strong>
+        <span th:text="${expediente.numero}"></span>
+    </p>
+
+    <p>
+        <strong>Assunto:</strong>
+        <span th:text="${expediente.assunto}"></span>
+    </p>
+
+    <form th:action="@{/movimentacoes/salvar}"
+          th:object="${movimentacao}"
+          method="post">
+
+        <input type="hidden"
+               th:field="*{expediente.id}">
+
+        <label for="remetente">Remetente:</label>
+        <input type="text"
+               id="remetente"
+               th:field="*{remetente}"
+               required>
+
+        <label for="destinatario">Destinatário:</label>
+        <input type="text"
+               id="destinatario"
+               th:field="*{destinatario}"
+               required>
+
+        <label for="estado">Estado:</label>
+        <select id="estado" th:field="*{estado}" required>
+            <option value="Em andamento">Em andamento</option>
+            <option value="Recebido">Recebido</option>
+            <option value="Despachado">Despachado</option>
+            <option value="Concluído">Concluído</option>
+            <option value="Arquivado">Arquivado</option>
+        </select>
+
+        <label for="observacao">Observação / Despacho:</label>
+        <textarea id="observacao"
+                  th:field="*{observacao}"
+                  placeholder="Digite uma observação ou despacho..."></textarea>
+
+        <div class="botoes">
+            <button type="submit">Guardar Movimentação</button>
+
+            <a class="voltar"
+               th:href="@{/expedientes}">
+                Cancelar
+            </a>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>

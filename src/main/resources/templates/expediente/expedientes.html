@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão de Expedientes</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f6f8;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .topo {
+            margin-bottom: 20px;
+        }
+
+        .botao {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-right: 10px;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            border-radius: 5px;
+        }
+
+        .botao:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #343a40;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .editar {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .excluir {
+            color: #dc3545;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .movimentar {
+            color: #198754;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .historico {
+            color: #6f42c1;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Gestão de Expedientes</h1>
+
+    <div class="topo">
+
+        <a href="/expedientes/novo" class="botao">
+            + Novo Expediente
+        </a>
+
+        <a href="/" class="botao">
+            Voltar ao Menu
+        </a>
+
+    </div>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Número</th>
+                <th>Assunto</th>
+                <th>Descrição</th>
+                <th>Data de Entrada</th>
+                <th>Estado</th>
+                <th>Remetente</th>
+                <th>Destinatário</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr th:each="expediente : ${expedientes}">
+
+                <td th:text="${expediente.id}"></td>
+
+                <td th:text="${expediente.numero}"></td>
+
+                <td th:text="${expediente.assunto}"></td>
+
+                <td th:text="${expediente.descricao}"></td>
+
+                <td th:text="${expediente.dataEntrada}"></td>
+
+                <td th:text="${expediente.estado}"></td>
+
+                <td th:text="${expediente.remetente}"></td>
+
+                <td th:text="${expediente.destinatario}"></td>
+
+                <td>
+
+                    <a th:href="@{/expedientes/editar/{id}(id=${expediente.id})}"
+                       class="editar">
+                        Editar
+                    </a>
+
+                    <a th:href="@{/expedientes/excluir/{id}(id=${expediente.id})}"
+                       class="excluir"
+                       onclick="return confirm('Tem certeza que deseja excluir este expediente?');">
+                        Excluir
+                    </a>
+
+                    <a th:href="@{/expedientes/{id}/movimentar(id=${expediente.id})}"
+                       class="movimentar">
+                        Movimentar
+                    </a>
+
+                    <a th:href="@{/expedientes/{id}/movimentacoes(id=${expediente.id})}"
+                       class="historico">
+                        Movimentações
+                    </a>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Expediente</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f6f8;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .botoes {
+            margin-top: 25px;
+        }
+
+        button, .voltar {
+            display: inline-block;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .voltar {
+            background-color: #6c757d;
+            color: white;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Editar Expediente</h1>
+
+    <form action="/expedientes/salvar" method="post">
+
+        <input type="hidden"
+               name="id"
+               th:value="${expediente.id}">
+
+        <label for="numero">Número do Expediente:</label>
+        <input type="text"
+               id="numero"
+               name="numero"
+               th:value="${expediente.numero}"
+               required>
+
+        <label for="assunto">Assunto:</label>
+        <input type="text"
+               id="assunto"
+               name="assunto"
+               th:value="${expediente.assunto}"
+               required>
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao"
+                  name="descricao"
+                  th:text="${expediente.descricao}"></textarea>
+
+        <label for="dataEntrada">Data de Entrada:</label>
+        <input type="date"
+               id="dataEntrada"
+               name="dataEntrada"
+               th:value="${expediente.dataEntrada}"
+               required>
+
+        <label for="estado">Estado:</label>
+        <select id="estado" name="estado" required>
+
+            <option value="RECEBIDO"
+                    th:selected="${expediente.estado == 'RECEBIDO'}">
+                Recebido
+            </option>
+
+            <option value="EM_ANALISE"
+                    th:selected="${expediente.estado == 'EM_ANALISE'}">
+                Em Análise
+            </option>
+
+            <option value="ENCAMINHADO"
+                    th:selected="${expediente.estado == 'ENCAMINHADO'}">
+                Encaminhado
+            </option>
+
+            <option value="CONCLUIDO"
+                    th:selected="${expediente.estado == 'CONCLUIDO'}">
+                Concluído
+            </option>
+
+            <option value="ARQUIVADO"
+                    th:selected="${expediente.estado == 'ARQUIVADO'}">
+                Arquivado
+            </option>
+
+        </select>
+
+        <label for="remetente">Remetente:</label>
+        <input type="text"
+               id="remetente"
+               name="remetente"
+               th:value="${expediente.remetente}"
+               required>
+
+        <label for="destinatario">Destinatário:</label>
+        <input type="text"
+               id="destinatario"
+               name="destinatario"
+               th:value="${expediente.destinatario}"
+               required>
+
+        <div class="botoes">
+
+            <button type="submit">
+                Atualizar Expediente
+            </button>
+
+            <a href="/expedientes" class="voltar">
+                Cancelar
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>
