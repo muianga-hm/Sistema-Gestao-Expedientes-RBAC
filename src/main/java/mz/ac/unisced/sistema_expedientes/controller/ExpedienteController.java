@@ -1,7 +1,10 @@
 package mz.ac.unisced.sistema_expedientes.controller;
 
+import jakarta.servlet.http.HttpSession;
+
 import mz.ac.unisced.sistema_expedientes.model.Auditoria;
 import mz.ac.unisced.sistema_expedientes.model.Expediente;
+import mz.ac.unisced.sistema_expedientes.model.Usuario;
 import mz.ac.unisced.sistema_expedientes.repository.AuditoriaRepository;
 import mz.ac.unisced.sistema_expedientes.repository.ExpedienteRepository;
 
@@ -43,12 +46,22 @@ public class ExpedienteController {
 
     // Guardar expediente
     @PostMapping("/expedientes/salvar")
-    public String salvarExpediente(Expediente expediente) {
+    public String salvarExpediente(
+            Expediente expediente,
+            HttpSession session) {
 
         expedienteRepository.save(expediente);
 
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+
+        String nomeUtilizador = "Utilizador desconhecido";
+
+        if (usuario != null) {
+            nomeUtilizador = usuario.getNome();
+        }
+
         Auditoria auditoria = new Auditoria();
-        auditoria.setUtilizador("Utilizador autenticado");
+        auditoria.setUtilizador(nomeUtilizador);
         auditoria.setDataHora(LocalDateTime.now());
         auditoria.setAcao("CRIAR EXPEDIENTE");
         auditoria.setDescricao(
@@ -77,7 +90,9 @@ public class ExpedienteController {
 
     // Excluir expediente
     @GetMapping("/expedientes/excluir/{id}")
-    public String excluirExpediente(@PathVariable Long id) {
+    public String excluirExpediente(
+            @PathVariable Long id,
+            HttpSession session) {
 
         Expediente expediente = expedienteRepository.findById(id)
                 .orElseThrow(() ->
@@ -87,8 +102,16 @@ public class ExpedienteController {
 
         expedienteRepository.deleteById(id);
 
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+
+        String nomeUtilizador = "Utilizador desconhecido";
+
+        if (usuario != null) {
+            nomeUtilizador = usuario.getNome();
+        }
+
         Auditoria auditoria = new Auditoria();
-        auditoria.setUtilizador("Utilizador autenticado");
+        auditoria.setUtilizador(nomeUtilizador);
         auditoria.setDataHora(LocalDateTime.now());
         auditoria.setAcao("EXCLUIR EXPEDIENTE");
         auditoria.setDescricao(
