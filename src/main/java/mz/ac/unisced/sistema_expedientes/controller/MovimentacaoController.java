@@ -83,7 +83,7 @@ public class MovimentacaoController {
         String nomeUtilizador = "Utilizador desconhecido";
 
         if (usuario != null) {
-            nomeUtilizador = usuario.getEmail();
+            nomeUtilizador = usuario.getNome();
         }
 
         Auditoria auditoria = new Auditoria();
