@@ -88,6 +88,35 @@ public class ExpedienteController {
         return "expediente/editar";
     }
 
+    // Guardar edição do expediente
+    @PostMapping("/expedientes/editar")
+    public String guardarEdicao(
+            Expediente expediente,
+            HttpSession session) {
+
+        expedienteRepository.save(expediente);
+
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+
+        String nomeUtilizador = "Utilizador desconhecido";
+
+        if (usuario != null) {
+            nomeUtilizador = usuario.getNome();
+        }
+
+        Auditoria auditoria = new Auditoria();
+        auditoria.setUtilizador(nomeUtilizador);
+        auditoria.setDataHora(LocalDateTime.now());
+        auditoria.setAcao("EDITAR EXPEDIENTE");
+        auditoria.setDescricao(
+                "Foi editado o expediente " + expediente.getNumero()
+        );
+
+        auditoriaRepository.save(auditoria);
+
+        return "redirect:/expedientes";
+    }
+
     // Excluir expediente
     @GetMapping("/expedientes/excluir/{id}")
     public String excluirExpediente(
