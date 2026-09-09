@@ -75,19 +75,17 @@ public class RbacInterceptor implements HandlerInterceptor {
             }
         }
 
-        // Permissões do FUNCIONÁRIO
-        if ("FUNCIONARIO".equals(papel)) {
+    // Permissões do FUNCIONÁRIO
+if ("FUNCIONARIO".equals(papel)) {
 
-            if (uri.startsWith("/expedientes")
-                    || uri.startsWith("/movimentacoes")
-                    || uri.startsWith("/auditoria")) {
+    if (uri.startsWith("/expedientes")
+            || uri.startsWith("/movimentacoes")) {
 
-                return true;
-            }
-        }
-
-        // Acesso não autorizado
-        response.sendRedirect("/");
-        return false;
+        return true;
+    }
+}   
+    // Acesso não autorizado
+    response.sendRedirect("/");
+    return false;
     }
 }
