@@ -24,3 +24,6 @@ O sistema permite gerir expedientes, utilizadores, papéis, movimentações, aud
 - Registo de auditoria
 - Relatórios
 - Autenticação e controlo de acesso baseado em papéis (RBAC)
+## Objetivo
+
+O objetivo do sistema é melhorar a gestão e o acompanhamento dos expedientes, garantindo organização, segurança, rastreabilidade e controlo de acesso às informações.
